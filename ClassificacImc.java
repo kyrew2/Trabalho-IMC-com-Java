@@ -2,13 +2,12 @@ import java.util.Scanner;
 
 public class ClassificacImc {
     public static void main(String[] args) {
-
         Scanner sc = new Scanner(System.in);
         int verifica = 0;
-        String generoInformado = "";
+        String generoExibido = "";
 
         System.out.print("Digite seu nome: ");
-        String nome = sc.nextLine();
+        String nome1 = sc.nextLine();
 
         while (verifica <= 0) {
 
@@ -18,19 +17,19 @@ public class ClassificacImc {
             switch (genero) {
                 case 'M', 'm':
                     System.out.println("Masculino");//tirar depois
-                    generoInformado = "M";
+                    generoExibido = "Masculino";
                     verifica++;
                     break;
 
                 case 'F', 'f':
-                    System.out.println("Feminino"); //tirar depois
-                    generoInformado = "F";
+                    System.out.println("Feminino");
+                    generoExibido = "Feminino"; //tirar depois
                     verifica++;
                     break;
 
                 case 'N', 'n':
                     System.out.println("Não informado"); //tirar depois
-                    generoInformado = "F";
+                    generoExibido = "Não informado";
                     verifica++;
                     break;
 
@@ -48,8 +47,11 @@ public class ClassificacImc {
         double calculaIMC = peso / (altura * altura);
         System.out.println(calculaIMC);
 
-        if (generoInformado.equals("F")) {
+        System.out.println(exibir(nome1, generoExibido, calculaIMC));
+
+        if (generoExibido.equals("Feminino") || generoExibido.equals("Não informado")) {
             if (calculaIMC <= 19) {
+
                 System.out.println("IMC: abaixo do normal");
             } else if (calculaIMC > 19 && calculaIMC <= 23.99) {
                 System.out.println("IMC: normal");
@@ -62,7 +64,7 @@ public class ClassificacImc {
             }
         }
 
-        if (generoInformado.equals("M")) {
+        if (generoExibido.equals("Masculino")) {
             if (calculaIMC <= 20) {
                 System.out.println("IMC: abaixo do normal");
             } else if (calculaIMC > 20 && calculaIMC <= 24.99) {
@@ -75,5 +77,10 @@ public class ClassificacImc {
                 System.out.println("IMC: obesidade mórbida");
             }
         }
+    }
+    public void exibir(String nome1, String generoExibido, double calculaIMC) {
+        System.out.println("Nome " + nome1);
+        System.out.println("Gênero " + generoExibido);
+        System.out.println("IMC: " + calculaIMC);
     }
 }
